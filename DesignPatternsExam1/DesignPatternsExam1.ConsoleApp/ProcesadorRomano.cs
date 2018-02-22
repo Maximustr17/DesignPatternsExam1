@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace DesignPatternsExam1.ConsoleApp
 {
@@ -6,6 +7,12 @@ namespace DesignPatternsExam1.ConsoleApp
     {
         public static int Convierte(string numerito)
         {
+            var rgx = new Regex("III+|L+|D+|XXX+|CCC+");
+
+            if (rgx.IsMatch(numerito.ToUpper()))
+                throw new Exception();
+            
+            numerito.ToUpper().ToCharArray();
             if (string.IsNullOrEmpty(numerito))
                 return 0;
             var num = GetValueOfString(numerito);
@@ -34,8 +41,6 @@ namespace DesignPatternsExam1.ConsoleApp
                     return 500;
                 case "M":
                     return 1000;
-                case "IIII":
-                    throw new Exception();
             }
             return 0;
         }
