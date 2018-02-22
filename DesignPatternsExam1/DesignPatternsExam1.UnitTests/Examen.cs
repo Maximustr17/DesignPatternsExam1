@@ -64,5 +64,12 @@ namespace DesignPatternsExam1.UnitTests
         {
             ProcesadorRomano.Convierte("CCCC");
         }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "It should throw an exeption when more than 3 C")]
+        public void TestMethod8()
+        {
+            ProcesadorRomano.Convierte("XXL");
+        }
     }
 }
