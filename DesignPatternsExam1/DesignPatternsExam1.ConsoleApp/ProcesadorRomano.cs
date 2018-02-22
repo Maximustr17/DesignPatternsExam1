@@ -4,7 +4,8 @@
     {
         public static int Convierte(string numerito)
         {
-
+            if(string.IsNullOrEmpty(numerito))
+                return 0;
             return 0;
         }
     }
