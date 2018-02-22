@@ -1,11 +1,36 @@
-﻿namespace DesignPatternsExam1.ConsoleApp
+﻿using System;
+
+namespace DesignPatternsExam1.ConsoleApp
 {
     public static class ProcesadorRomano
     {
         public static int Convierte(string numerito)
         {
-            if(string.IsNullOrEmpty(numerito))
+            if (string.IsNullOrEmpty(numerito))
                 return 0;
+            switch (numerito)
+            {
+                case "I":
+                    return 1;
+                case "II":
+                    return 2;
+                case "III":
+                    return 3;
+                case "V":
+                    return 5;
+                case "X":
+                    return 10;
+                case "L":
+                    return 50;
+                case "C":
+                    return 100;
+                case "D":
+                    return 500;
+                case "M":
+                    return 1000;
+                case "IIII":
+                    throw new Exception();
+            }
             return 0;
         }
     }
