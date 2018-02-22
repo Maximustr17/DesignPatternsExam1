@@ -8,6 +8,12 @@ namespace DesignPatternsExam1.ConsoleApp
         {
             if (string.IsNullOrEmpty(numerito))
                 return 0;
+            var num = GetValueOfString(numerito);
+            return num;
+        }
+
+        private static int GetValueOfString(string numerito)
+        {
             switch (numerito)
             {
                 case "I":
