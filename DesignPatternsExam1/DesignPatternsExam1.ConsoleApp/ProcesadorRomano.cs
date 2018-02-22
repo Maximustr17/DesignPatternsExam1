@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace DesignPatternsExam1.ConsoleApp
@@ -9,8 +11,8 @@ namespace DesignPatternsExam1.ConsoleApp
         {
             if (!IsValidString(numerito))
                 return 0;
-            
-            var num = GetValueOfString(numerito);
+
+            var num = GetValue(numerito);
             return num;
         }
 
@@ -47,6 +49,35 @@ namespace DesignPatternsExam1.ConsoleApp
             if (rgx.IsMatch(numerito.ToUpper()))
                 throw new Exception();
             return !string.IsNullOrEmpty(numerito);
+        }
+
+        private static int GetValue(string numerito)
+        {
+            var letters = numerito.ToCharArray();
+            var accountLetters = letters.Length;
+            var listOfValues = new List<int>();
+
+            for (var i = 0; i < accountLetters; i++)
+            {
+                var cantToSend = 1;
+
+                if (GetValueOfString(numerito.Substring(i, cantToSend)) == 1 && i + 1 < accountLetters)
+                {
+                    cantToSend++;
+                    GetValueOfString(numerito.Substring(i, cantToSend));
+                    if (GetValueOfString(numerito.Substring(i, cantToSend)) == 1 && i + 1 < accountLetters)
+                    {
+                        cantToSend++;
+                    }
+                }
+                var value = GetValueOfString(numerito.Substring(i, cantToSend));
+                var badLocation = listOfValues.FirstOrDefault(x => x > value);
+                if (badLocation != 0)
+                    throw new Exception();
+                listOfValues.Add(value);
+            }
+
+            return listOfValues.Sum();
         }
     }
 }
