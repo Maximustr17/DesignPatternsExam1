@@ -7,14 +7,9 @@ namespace DesignPatternsExam1.ConsoleApp
     {
         public static int Convierte(string numerito)
         {
-            var rgx = new Regex("III+|L+|D+|XXX+|CCC+");
-
-            if (rgx.IsMatch(numerito.ToUpper()))
-                throw new Exception();
-            
-            numerito.ToUpper().ToCharArray();
-            if (string.IsNullOrEmpty(numerito))
+            if (!IsValidString(numerito))
                 return 0;
+            
             var num = GetValueOfString(numerito);
             return num;
         }
@@ -43,6 +38,15 @@ namespace DesignPatternsExam1.ConsoleApp
                     return 1000;
             }
             return 0;
+        }
+
+        private static bool IsValidString(string numerito)
+        {
+            var rgx = new Regex("III+|L+|D+|XXX+|CCC+");
+
+            if (rgx.IsMatch(numerito.ToUpper()))
+                throw new Exception();
+            return !string.IsNullOrEmpty(numerito);
         }
     }
 }
