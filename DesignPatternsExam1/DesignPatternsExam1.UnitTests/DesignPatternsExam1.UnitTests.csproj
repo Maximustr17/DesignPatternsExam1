@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Examen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DesignPatternsExam1.ConsoleApp\DesignPatternsExam1.ConsoleApp.csproj">
-      <Project>{c3afd275-0f3d-4228-990e-07a3a877d768}</Project>
+      <Project>{1c0fdabb-0924-476b-b38f-103b27d77f21}</Project>
       <Name>DesignPatternsExam1.ConsoleApp</Name>
     </ProjectReference>
   </ItemGroup>
