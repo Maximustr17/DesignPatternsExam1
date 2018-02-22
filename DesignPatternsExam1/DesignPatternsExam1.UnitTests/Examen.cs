@@ -71,5 +71,15 @@ namespace DesignPatternsExam1.UnitTests
         {
             ProcesadorRomano.Convierte("XXL");
         }
+        [TestMethod]
+        public void TestMethod9()
+        {
+            Assert.AreEqual(60, ProcesadorRomano.Convierte("LX"));
+            Assert.AreEqual(16, ProcesadorRomano.Convierte("XVI"));
+            Assert.AreEqual(8, ProcesadorRomano.Convierte("VIII"));
+            Assert.AreEqual(21, ProcesadorRomano.Convierte("XXI"));
+            Assert.AreEqual(101, ProcesadorRomano.Convierte("CI"));
+            Assert.AreEqual(161, ProcesadorRomano.Convierte("CLXI"));
+        }
     }
 }

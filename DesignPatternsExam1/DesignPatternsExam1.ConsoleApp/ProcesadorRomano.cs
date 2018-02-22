@@ -44,7 +44,7 @@ namespace DesignPatternsExam1.ConsoleApp
 
         private static bool IsValidString(string numerito)
         {
-            var rgx = new Regex("III+|L+|D+|XXX+|CCC+");
+            var rgx = new Regex("(IIII+)|(LL+)|(DD+)|(XXXX+)|(CCCC+)");
 
             if (rgx.IsMatch(numerito.ToUpper()))
                 throw new Exception();
@@ -53,28 +53,30 @@ namespace DesignPatternsExam1.ConsoleApp
 
         private static int GetValue(string numerito)
         {
-            var letters = numerito.ToCharArray();
-            var accountLetters = letters.Length;
+            var accountLetters = numerito.Length;
             var listOfValues = new List<int>();
-
+            var cantToSend = 1;
             for (var i = 0; i < accountLetters; i++)
             {
-                var cantToSend = 1;
+                var cantToStart = i;
 
-                if (GetValueOfString(numerito.Substring(i, cantToSend)) == 1 && i + 1 < accountLetters)
+                if (GetValueOfString(numerito.Substring(cantToStart, cantToSend)) == 1 && i + 1 < accountLetters && GetValueOfString(numerito.Substring(cantToStart + 1, 1)) == 1)
                 {
                     cantToSend++;
-                    GetValueOfString(numerito.Substring(i, cantToSend));
-                    if (GetValueOfString(numerito.Substring(i, cantToSend)) == 1 && i + 1 < accountLetters)
+                    i++;
+                    if (GetValueOfString(numerito.Substring(cantToStart, cantToSend)) == 2 && i + 1 < accountLetters && GetValueOfString(numerito.Substring(cantToStart + 1, 1)) == 1)
                     {
+                        i++;
                         cantToSend++;
                     }
                 }
-                var value = GetValueOfString(numerito.Substring(i, cantToSend));
-                var badLocation = listOfValues.FirstOrDefault(x => x > value);
+
+                var value = GetValueOfString(numerito.Substring(cantToStart, cantToSend));
+                var badLocation = listOfValues.FirstOrDefault(x => x < value);
                 if (badLocation != 0)
                     throw new Exception();
                 listOfValues.Add(value);
+                cantToSend = 1;
             }
 
             return listOfValues.Sum();
