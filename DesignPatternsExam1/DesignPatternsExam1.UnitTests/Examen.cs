@@ -29,5 +29,40 @@ namespace DesignPatternsExam1.UnitTests
             Assert.AreEqual(1000, ProcesadorRomano.Convierte("M"));
             ProcesadorRomano.Convierte("IIII");
         }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "It should throw an exeption when more than 3 I")]
+        public void TestMethod3()
+        {
+            ProcesadorRomano.Convierte("IIII");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "It should throw an exeption when more than a L")]
+        public void TestMethod4()
+        {
+            ProcesadorRomano.Convierte("LL");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "It should throw an exeption when more than a D")]
+        public void TestMethod5()
+        {
+            ProcesadorRomano.Convierte("DD");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "It should throw an exeption when more than 3 X")]
+        public void TestMethod6()
+        {
+            ProcesadorRomano.Convierte("XXXX");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "It should throw an exeption when more than 3 C")]
+        public void TestMethod7()
+        {
+            ProcesadorRomano.Convierte("CCCC");
+        }
     }
 }
